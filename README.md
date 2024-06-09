@@ -1,4 +1,7 @@
+![code coverage badge](https://github.com/sebastiantare/learn-cicd-starter/actions/workflows/ci.yml/badge.svg)
 # learn-cicd-starter (Notely)
+
+Tests: ![code coverage badge](https://github.com/sebastiantare/learn-cicd-starter/actions/workflows/ci.yml/badge.svg)
 
 This repo contains the starter code for the "Notely" application for the "Learn CICD" course on [Boot.dev](https://boot.dev).
 
@@ -22,4 +25,4 @@ go build -o notely && ./notely
 
 You do *not* need to set up a database or any interactivity on the webpage yet. Instructions for that will come later in the course!
 
-Test 3
+Test 4 ci
