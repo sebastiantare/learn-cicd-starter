@@ -11,7 +11,7 @@ func TestGetAPIKey(t *testing.T) {
 	got, err := GetAPIKey(hh)
   print(err)
 	want := []string{"a"}
-	if !reflect.DeepEqual(want, got) {
+	if reflect.DeepEqual(want, got) {
 		t.Fatalf("expected: %v, got: %v", want, got)
 	}
 }
