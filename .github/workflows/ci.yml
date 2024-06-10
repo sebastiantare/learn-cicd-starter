@@ -18,21 +18,33 @@ jobs:
         with:
           go-version: '1.22'
 
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
       - name: Test
         run: go test ./... -cover
 
-    style:
-      name: Style
-      runs-on: ubuntu-latest
+      - name: Gosec
+        run: gosec ./...
 
-      steps:
-        - name: Check out code
-          uses: actions/checkout@v4
+  style:
+    name: Style
+    runs-on: ubuntu-latest
 
-        - name: Set up Go
-          uses: actions/setup-go@v4
-          with:
-            go-version: '1.22'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
 
-        - name: Style
-          run: test -z $(go fmt ./...)
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Style
+        run: test -z $(go fmt ./...)
+
+      - name: Lint
+        run: staticcheck ./...
