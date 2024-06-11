@@ -26,11 +26,13 @@ var staticFiles embed.FS
 
 func main() {
 	err := godotenv.Load(".env")
+
 	if err != nil {
 		log.Printf("warning: assuming default configuration. .env unreadable: %v", err)
 	}
 
 	port := os.Getenv("PORT")
+
 	if port == "" {
 		log.Fatal("PORT environment variable is not set")
 	}
@@ -89,8 +91,9 @@ func main() {
 
 	router.Mount("/v1", v1Router)
 	srv := &http.Server{
-		Addr:    ":" + port,
-		Handler: router,
+		Addr:              ":" + port,
+		Handler:           router,
+		ReadHeaderTimeout: 3000,
 	}
 
 	log.Printf("Serving on port: %s\n", port)
