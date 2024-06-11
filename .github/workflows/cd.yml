@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.22'
+          node-version: '20.x'
 
       - name: Build app
         run: ./scripts/buildprod.sh
