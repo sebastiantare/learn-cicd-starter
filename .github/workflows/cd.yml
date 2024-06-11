@@ -18,13 +18,8 @@ jobs:
         with:
           go-version: '1.22'
 
-      - name: Build
-        run: scripts/buildprod.sh
-
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
+      - name: Build app
+        run: ./scripts/buildprod.sh
 
       - id: auth
         uses: google-github-actions/auth@v2
@@ -33,6 +28,9 @@ jobs:
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
+
+      - name: Use gcloud CLI
+        run: gcloud info
 
       - name: Build and Push
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-426104/notely-ar-repo/notely:latest .
